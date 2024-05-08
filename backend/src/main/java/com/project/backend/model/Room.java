@@ -34,7 +34,7 @@ public class Room {
     @Column(name="Is_Booked")
     private boolean isBooked = false;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL) //'cascade = CascadeType.ALL', it means that all operations like persisting, merging, removing, refreshing, and detaching are performed on the parent entity  should also be applied to its related child entities
+    @OneToMany(mappedBy = "room",fetch = FetchType.LAZY, cascade = CascadeType.ALL) //'cascade = CascadeType.ALL', it means that all operations like persisting, merging, removing, refreshing, and detaching are performed on the parent entity  should also be applied to its related child entities
     private List<BookedRoom> bookings;
 
     public Room() {
