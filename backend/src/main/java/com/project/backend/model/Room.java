@@ -35,7 +35,8 @@ public class Room {
     public Room() {
         this.bookings = new ArrayList<>();
     }
-//    This constructor is automatically called when creating a new Room object using new Room()
+
+    //    This constructor is automatically called when creating a new Room object using new Room()
 //    'this.bookings = new ArrayList<>();' This line creates a new empty ArrayList and assigns it to the bookings field of the Room object.
 //    Without this line, bookings would be null when creating a new Room object. If bookings is null and when we try to use it  a NullPointerException will be thrown.
 

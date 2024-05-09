@@ -1,9 +1,8 @@
 package com.project.backend.controller;
 
-import com.project.backend.ResponseDTO.RoomResponseDTO;
+import com.project.backend.Response.RoomResponse;
 import com.project.backend.model.Room;
 import com.project.backend.service.RoomService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +16,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/rooms")
-@RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:3000")
 public class RoomController {
 
@@ -25,18 +23,21 @@ public class RoomController {
     private RoomService roomService;
 
     @PostMapping(value = "/add-new-room", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<RoomResponseDTO> addNewRoom(
+    public ResponseEntity<RoomResponse> addNewRoom(
             @RequestParam("photo") MultipartFile photo,
             @RequestParam("roomType") String roomType,
             @RequestParam("roomPrice") BigDecimal roomPrice) throws SQLException, IOException {
         Room savedRoom = roomService.addNewRoom(photo, roomType, roomPrice);
-        RoomResponseDTO response = new RoomResponseDTO(savedRoom.getId(),savedRoom.getRoomType(),savedRoom.getRoomPrice());
+        RoomResponse response = new RoomResponse(savedRoom.getId(),savedRoom.getRoomType(),savedRoom.getRoomPrice());
         return ResponseEntity.ok(response);
+
     }
 
-    @GetMapping("/getRoomTypes")
-    public List<String> getRoomTypes() {
-        return roomService.getAllRoomTypes();
+
+    @GetMapping(value = "/getRoomTypes", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<String>> getRoomTypes() {
+        List<String> RoomTypes = roomService.getAllRoomTypes();
+        return ResponseEntity.ok(RoomTypes);
     }
 
 }

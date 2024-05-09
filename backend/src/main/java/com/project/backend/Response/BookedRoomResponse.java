@@ -1,4 +1,4 @@
-package com.project.backend.ResponseDTO;
+package com.project.backend.Response;
 
 import com.project.backend.model.Room;
 import lombok.AllArgsConstructor;
@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BookedRoomResponseDTO {
+public class BookedRoomResponse {
     private Long bookingId;
     private LocalDate checkInDate;
     private LocalDate checkOutDate;
@@ -22,7 +22,7 @@ public class BookedRoomResponseDTO {
     private String bookingConfirmationCode;
     private Room room;
 
-    public BookedRoomResponseDTO(Long bookingId, LocalDate checkInDate, LocalDate checkOutDate, String bookingConfirmationCode) {
+    public BookedRoomResponse(Long bookingId, LocalDate checkInDate, LocalDate checkOutDate, String bookingConfirmationCode) {
         this.bookingId = bookingId;
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;

@@ -1,4 +1,4 @@
-package com.project.backend.ResponseDTO;
+package com.project.backend.Response;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,21 +9,21 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class RoomResponseDTO {
+public class RoomResponse {
     private Long id;
     private String roomType;
     private BigDecimal roomPrice;
     private String photo; // String representation can be easily managed using standard JSON or other serialization techniques.
     private boolean isBooked;
-    private List<BookedRoomResponseDTO> bookings;
+    private List<BookedRoomResponse> bookings;
 
-    public RoomResponseDTO(Long id, String roomType, BigDecimal roomPrice) {
+    public RoomResponse(Long id, String roomType, BigDecimal roomPrice) {
         this.id = id;
         this.roomType = roomType;
         this.roomPrice = roomPrice;
     }
 
-    public RoomResponseDTO(Long id, String roomType, BigDecimal roomPrice, byte[] photoBytes, boolean isBooked, List<BookedRoomResponseDTO> bookings) {
+    public RoomResponse(Long id, String roomType, BigDecimal roomPrice, byte[] photoBytes, boolean isBooked, List<BookedRoomResponse> bookings) {
         this.id = id;
         this.roomType = roomType;
         this.roomPrice = roomPrice;
