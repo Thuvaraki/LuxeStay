@@ -17,21 +17,16 @@ import java.util.Random;
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="Room_Id")
     private Long id;
 
-    @Column(name="Room_Type")
     private String roomType;
 
-    @Column(name="Room_Price")
     private BigDecimal roomPrice;
 
-    @Column(name="Photo")
     @Lob //used to specify 'photo' is a large object type
 //    Blob - Binary Large Object - store large binary data such as images, documents,
     private Blob photo;
 
-    @Column(name="Is_Booked")
     private boolean isBooked = false;
 
     @OneToMany(mappedBy = "room",fetch = FetchType.LAZY, cascade = CascadeType.ALL) //'cascade = CascadeType.ALL', it means that all operations like persisting, merging, removing, refreshing, and detaching are performed on the parent entity  should also be applied to its related child entities

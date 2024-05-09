@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -22,20 +23,24 @@ public class RoomServiceImpl implements RoomService{
 
     @Override
     public Room addNewRoom(MultipartFile file, String roomType, BigDecimal roomPrice) throws SQLException, IOException {
-        System.out.println("hi");
         Room room = new Room();
         room.setRoomType(roomType);
         room.setRoomPrice(roomPrice);
-        System.out.println("room" +room);
+//        System.out.println("room" +room);
 
         if (!file.isEmpty()) {
             byte[] photoBytes = file.getBytes();
-            System.out.println("photoBytes" + photoBytes);
+//            System.out.println("photoBytes" + photoBytes);
             Blob photoBlob = new SerialBlob(photoBytes);
-            System.out.println("a");
             room.setPhoto(photoBlob);
-            System.out.println("b");
         }
         return  roomRepository.save(room);
+    }
+
+    @Override
+    public List<String> getAllRoomTypes() {
+        List<String> RoomTypes = roomRepository.findDistinctRoomTypes();
+        System.out.println(RoomTypes);
+        return RoomTypes;
     }
 }
