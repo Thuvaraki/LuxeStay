@@ -13,7 +13,7 @@ public class RoomResponseDTO {
     private Long id;
     private String roomType;
     private BigDecimal roomPrice;
-    private String photo; //String representation can be easily managed using standard JSON or other serialization techniques.
+    private String photo; // String representation can be easily managed using standard JSON or other serialization techniques.
     private boolean isBooked;
     private List<BookedRoomResponseDTO> bookings;
 
