@@ -27,3 +27,21 @@ export async function getRoomTypes() {
     throw new Error("Error fetching room types");
   }
 }
+
+export async function getAllRooms() {
+  try {
+    const response = await api.get("/getAllRooms");
+    return response.data;
+  } catch (error) {
+    throw new Error("Error fetching rooms");
+  }
+}
+
+export async function deleteRoom(roomId) {
+  try {
+    const result = await api.delete(`/deleteRoom/${roomId}`);
+    return result;
+  } catch (error) {
+    throw new Error(`Error in deleting room :  ${error.message}`);
+  }
+}
