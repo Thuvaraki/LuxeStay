@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getAllRooms, deleteRoom } from "../Utils/ApiFunctions";
 import RoomFilter from "../common/RoomFilter";
 import RoomPaginator from "../common/RoomPaginator";
-import { FaEdit, FaEye, FaTrashAlt } from "react-icons/fa";
+import { FaEdit, FaEye, FaTrashAlt, FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const ExistingRoom = () => {
@@ -100,9 +100,12 @@ const ExistingRoom = () => {
               <div className="col-md-6 mb-3 mb-md-0">
                 <RoomFilter data={rooms} setFilteredData={setFilteredRooms} />
               </div>
-              {/* <div className="col-md-6 d-flex justify-content-end">
-                <Link to="/add-room">Add Room</Link>
-              </div> */}
+
+              <div className="col-md-6 d-flex justify-content-end">
+                <Link to="/add-room">
+                  <FaPlus /> Add New Room
+                </Link>
+              </div>
             </div>
 
             <table className="table table-bordered table-hover">

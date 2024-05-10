@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { addRoom } from "../Utils/ApiFunctions";
 import RoomTypeSelector from "../common/RoomTypeSelector";
+import { Link } from "react-router-dom";
 
 const AddRoom = () => {
   const [newRoom, setNewRoom] = useState({
@@ -122,6 +123,12 @@ const AddRoom = () => {
                     className="mb-3"
                   ></img>
                 )}
+              </div>
+
+              <div className="d-grid gap-2 d-md-flex mt-2">
+                <Link to="/existing-rooms" className="btn btn-outline-info">
+                  Back
+                </Link>
               </div>
 
               <div className="d-grid gap-2 d-md-flex mt-2">
