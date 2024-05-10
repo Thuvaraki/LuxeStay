@@ -51,6 +51,15 @@ public class RoomServiceImpl implements RoomService {
         List<Room> fetchedRooms = roomRepository.findAll();
         return fetchedRooms;
     }
+
+    @Override
+    public void deleteRoomById(Long roomId) {
+        Optional<Room> theRoom = roomRepository.findById(roomId);
+
+        if(theRoom.isPresent()){
+            roomRepository.deleteById(roomId);
+        }
+    }
 }
 //    @Override
 //    public byte[] getRoomPhotoByRoomId(Long roomId) throws SQLException {

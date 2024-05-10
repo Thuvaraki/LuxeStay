@@ -1,6 +1,5 @@
 package com.project.backend.service;
 
-import com.project.backend.Response.RoomResponse;
 import com.project.backend.model.Room;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,6 +14,8 @@ public interface RoomService {
     List<String> getAllRoomTypes();
 
     List<Room> getAllRooms();
+
+    void deleteRoomById(Long roomId);
 
 //    byte[] getRoomPhotoByRoomId(Long roomId) throws SQLException;
 }

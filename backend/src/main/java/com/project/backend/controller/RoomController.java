@@ -8,6 +8,8 @@ import com.project.backend.model.Room;
 import com.project.backend.service.BookingService;
 import com.project.backend.service.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -88,6 +90,12 @@ public class RoomController {
 
     private List<BookedRoom> getAllBookingsByRoomId(Long roomId) {
         return bookingService.getAllBookingsByRoomId(roomId);
+    }
+
+    @DeleteMapping("/deleteRoom/{roomId}")
+    public ResponseEntity<Void> deleteRoomById(@PathVariable("roomId") Long roomId){
+        roomService.deleteRoomById(roomId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 }
