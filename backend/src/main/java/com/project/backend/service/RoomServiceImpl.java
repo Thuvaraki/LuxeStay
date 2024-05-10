@@ -1,6 +1,7 @@
 package com.project.backend.service;
 
 import com.project.backend.Response.RoomResponse;
+import com.project.backend.exception.InternalServerException;
 import com.project.backend.exception.ResourceNotFoundException;
 import com.project.backend.model.Room;
 import com.project.backend.repository.RoomRepository;
@@ -60,20 +61,40 @@ public class RoomServiceImpl implements RoomService {
             roomRepository.deleteById(roomId);
         }
     }
+
+    @Override
+    public byte[] getRoomPhotoByRoomId(Long roomId) throws SQLException {
+        Optional<Room> theRoom = roomRepository.findById(roomId);
+        if(theRoom.isEmpty()){
+            throw new ResourceNotFoundException("Sorry,Room not found!");
+        }
+        Blob photoBlob = theRoom.get().getPhoto();
+        if(photoBlob != null){
+            return photoBlob.getBytes(1,(int) photoBlob.length());
+        }
+        return null;
+    }
+
+    @Override
+    public Room updateRoom(Long roomId, String roomType, BigDecimal roomPrice, byte[] photoBytes) {
+        Room room = roomRepository.findById(roomId).get();
+        if (roomType != null) room.setRoomType(roomType);
+        if (roomPrice != null) room.setRoomPrice(roomPrice);
+        if (photoBytes != null && photoBytes.length > 0) {
+            try {
+                room.setPhoto(new SerialBlob(photoBytes));
+            } catch (SQLException ex) {
+                throw new InternalServerException("Fail updating room");
+            }
+        }
+        return roomRepository.save(room);
+    }
+
+    @Override
+    public Optional<Room> getRoomById(Long roomId) {
+        return Optional.of(roomRepository.findById(roomId).get());
+    }
 }
-//    @Override
-//    public byte[] getRoomPhotoByRoomId(Long roomId) throws SQLException {
-//        Optional<Room> theRoom = roomRepository.findById(roomId);
-//        if(theRoom.isEmpty()){
-//            throw new ResourceNotFoundException("Sorry,Room not found!");
-//        }
-//        Blob photoBlob = theRoom.get().getPhoto();
-//        if(photoBlob != null){
-//            return photoBlob.getBytes(1,(int) photoBlob.length());
-//        }
-//        return null;
-//    }
-//}
 //getBytes(int pos, int length): This method is used to extract a portion of the blob data.
 //In this case: pos = 1: Specifies the position (index) within the blob from where to start reading.
 //In many database systems, blob data is indexed starting from 1.
