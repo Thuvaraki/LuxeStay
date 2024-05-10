@@ -1,13 +1,11 @@
 package com.project.backend.service;
 
-import com.project.backend.Response.RoomResponse;
 import com.project.backend.exception.InternalServerException;
 import com.project.backend.exception.ResourceNotFoundException;
 import com.project.backend.model.Room;
 import com.project.backend.repository.RoomRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 

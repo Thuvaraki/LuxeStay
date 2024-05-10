@@ -122,6 +122,4 @@ public class RoomController {
             return  ResponseEntity.ok(Optional.of(roomResponse));
         }).orElseThrow(() -> new ResourceNotFoundException("Room not found"));
     }
-
-
 }
