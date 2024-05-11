@@ -39,6 +39,11 @@ const NavBar = () => {
                 Browse all rooms
               </NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to={"/admin"}>
+                Admin
+              </NavLink>
+            </li>
           </ul>
 
           <ul className="d-flex navbar-nav">
