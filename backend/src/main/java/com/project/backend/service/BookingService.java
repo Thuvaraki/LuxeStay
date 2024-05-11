@@ -6,4 +6,12 @@ import java.util.List;
 
 public interface BookingService {
     List<BookedRoom> getAllBookingsByRoomId(Long roomId);
+
+    List<BookedRoom> getAllBookings();
+
+    BookedRoom getBookingByConfirmationCode(String confirmationCode);
+
+    String saveBooking(Long roomId, BookedRoom bookingRequest);
+
+    void cancelBooking(Long bookingId);
 }
