@@ -6,7 +6,7 @@ body {
   opacity: 0.9;
 }
 
-/* Navigation bar definitions */
+/* Navigation bar  */
 .navbar {
   padding: 0;
 }
@@ -79,7 +79,7 @@ body {
 }
 
 .parallax {
-  /* background-image: url("./assets/images/parrall.jpg"); */
+  background-image: url("../assets/parrall.jpg");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -91,7 +91,7 @@ body {
   position: relative;
   height: 150px;
   background-size: cover;
-  /* background-image: url("./assets/images/services4.jpg"); */
+  background-image: url("../assets/services.jpg");
   background-position: center center;
 }
 .header-title {
@@ -174,6 +174,7 @@ h2 {
     transform: none;
   }
 }
+
 /* Header overlay */
 .overlay {
   position: absolute;
@@ -194,7 +195,7 @@ h2 {
 
 /* The header banner */
 .header-banner {
-  /* background-image: url("./assets/images/services-1.jpg"); */
+  background-image: url("../assets//headerBg.jpg");
   background-size: cover;
   background-position: center;
   position: relative;
