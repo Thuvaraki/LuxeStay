@@ -39,9 +39,9 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public String saveBooking(Long roomId, BookedRoom bookingRequest) {
-        if(bookingRequest.getCheckOutDate().isAfter(bookingRequest.getCheckInDate())){
-            throw new InvalidBookingRequestException("Check-in date must come before check-out date");
-        }
+//        if(bookingRequest.getCheckOutDate().isAfter(bookingRequest.getCheckInDate())){
+//            throw new InvalidBookingRequestException("Check-in date must come before check-out date");
+//        }
        Room room = roomService.getRoomById(roomId).get();
         List<BookedRoom> existingBookings = room.getBookings();
         boolean roomIsAvailable = roomIsAvailable(bookingRequest, existingBookings);
