@@ -18,7 +18,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/bookings")
-public class BookingController {
+@CrossOrigin(origins = "http://localhost:3000")
+ public class BookingController {
 
     @Autowired
     private BookingService bookingService;
@@ -50,9 +51,11 @@ public class BookingController {
     }
 
     @PostMapping("/saveBooking/{roomId}")
-    public ResponseEntity<?> saveBooking(@PathVariable Long roomId,
+    public ResponseEntity<?> saveBooking(@PathVariable(name = "roomId") Long roomId,
                                          @RequestBody BookedRoom bookingRequest){
         try{
+            System.out.println("roomId"+roomId);
+            System.out.println("bookingRequest"+bookingRequest);
             String confirmationCode = bookingService.saveBooking(roomId,bookingRequest);
             return ResponseEntity.ok("Room booked successfully! Your booking confirmation code is : "+confirmationCode);
         }
