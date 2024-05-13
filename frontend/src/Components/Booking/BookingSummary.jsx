@@ -69,7 +69,7 @@ const BookingSummary = ({ booking, payment, isFormValid, onConfirm }) => {
                   <span
                     className="spinner-border spinner-border-sm mr-2"
                     role="status"
-                    aria-hidden="true"
+                    aria-hidden="true" //spinner icon is purely decorative and should be hidden from assistive technologies.
                   ></span>
                   Booking Confirmed, redirecting to payment...
                 </>
@@ -87,7 +87,7 @@ const BookingSummary = ({ booking, payment, isFormValid, onConfirm }) => {
         </>
       ) : (
         <p className="text-danger">
-          Check-out date must be after check-in date.
+          Something wrong with your inputs..Please check
         </p>
       )}
     </div>

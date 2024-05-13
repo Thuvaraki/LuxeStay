@@ -95,11 +95,11 @@ const BookingForm = () => {
       const confirmationCode = await saveBooking(roomId, booking);
       setIsSubmitted(true);
       console.log("confirmationCode", confirmationCode);
-      navigate("/booking-status", { state: { message: confirmationCode } });
+      navigate("/booking-status", { state: { message: confirmationCode } }); //state will be accessible in the destination component (BookingSuccess) through useLocation().
     } catch (error) {
       setErrorMessage(error.message);
       console.log("error", error.message);
-      navigate("/booking-status", { state: { error: errorMessage } });
+      navigate("/booking-status", { state: { error: error.message } });
     }
   };
 
@@ -111,6 +111,7 @@ const BookingForm = () => {
             <div className="card card-body mt-5">
               <h2 className="text-center hotel-color">Reserve Room</h2>
               <Form noValidate validated={isValidated} onSubmit={handleSubmit}>
+                {/* /noValidate - Disabling HTML5 form validation */}
                 <Form.Group>
                   <Form.Label htmlFor="guestName" className="hotel-color mt-3">
                     Full Name :
@@ -128,14 +129,13 @@ const BookingForm = () => {
                     Please enter your fullname.
                   </Form.Control.Feedback>
                 </Form.Group>
-
                 <Form.Group>
                   <Form.Label htmlFor="email" className="hotel-color mt-3">
                     Email :
                   </Form.Label>
                   <FormControl
                     required
-                    type="text"
+                    type="email"
                     name="guestEmail"
                     id="email"
                     placeholder="Enter your Email"
@@ -146,7 +146,6 @@ const BookingForm = () => {
                     Please enter your Email
                   </Form.Control.Feedback>
                 </Form.Group>
-
                 <fieldset style={{ border: "2px" }}>
                   <div className="row">
                     <div className="col- 6 mt-3">
@@ -192,7 +191,6 @@ const BookingForm = () => {
                     </div>
                   </div>
                 </fieldset>
-
                 <fieldset style={{ border: "2px" }}>
                   <div className="row">
                     <div className="col- 6">
@@ -245,8 +243,7 @@ const BookingForm = () => {
                     )}
                   </div>
                 </fieldset>
-
-                <div className="fom-group mt-3 mb-2">
+                <div className="form-group mt-3 mb-2">
                   <button type="submit" className="btn-hotel">
                     Continue
                   </button>
@@ -255,7 +252,7 @@ const BookingForm = () => {
             </div>
           </div>
 
-          <div className="col-md-4">
+          <div className="col-md-6">
             {isSubmitted && (
               <BookingSummary
                 booking={booking}
