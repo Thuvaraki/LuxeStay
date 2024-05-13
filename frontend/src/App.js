@@ -9,6 +9,7 @@ import RoomListing from "./Components/Room/RoomListing";
 import Admin from "./Components/Admin/Admin";
 import Checkout from "./Components/Booking/Checkout";
 import BookingStatus from "./Components/Booking/BookingStatus";
+import Bookings from "./Components/Booking/Bookings";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/admin" element={<Admin />} />
         <Route path="/book-room/:roomId" element={<Checkout />} />
         <Route path="/booking-status" element={<BookingStatus />} />
+        <Route path="/existing-bookings" element={<Bookings />} />
       </Routes>
       <Footer />
     </div>
