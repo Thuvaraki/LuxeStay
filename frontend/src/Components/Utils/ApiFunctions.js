@@ -64,3 +64,19 @@ export async function getRoomById(roomId) {
     throw new Error(`Error in fetching room : ${error.message}`);
   }
 }
+
+export async function getAvailableRooms(checkInDate, checkOutDate, roomType) {
+  const formattedCheckInDate = encodeURIComponent(checkInDate);
+  const formattedCheckOutDate = encodeURIComponent(checkOutDate);
+  const formattedRoomType = encodeURIComponent(roomType);
+
+  const result = await api.get(
+    `/availableRooms?checkInDate=${formattedCheckInDate}&checkOutDate=${formattedCheckOutDate}&roomType=${formattedRoomType}`
+  );
+
+  return result;
+  // Suppose checkInDate is "2024-05-16", checkOutDate is "2024-05-18", and roomType is "Single bed room".
+  // Without encoding, the resulting URL might look like => `/availableRooms?checkInDate=2024-05-16&checkOutDate=2024-05-18&roomType=Single bed room`
+  // After encoding, it becomes => `/availableRooms?checkInDate=2024-05-16&checkOutDate=2024-05-18&roomType=Single%20bed%20room`
+  // Here, spaces in roomType are converted to %20 to ensure the URL is correctly formed.
+}
