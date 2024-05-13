@@ -10,6 +10,7 @@ import Admin from "./Components/Admin/Admin";
 import Checkout from "./Components/Booking/Checkout";
 import BookingStatus from "./Components/Booking/BookingStatus";
 import Bookings from "./Components/Booking/Bookings";
+import FindBooking from "./Components/Booking/FindBooking";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/book-room/:roomId" element={<Checkout />} />
         <Route path="/booking-status" element={<BookingStatus />} />
         <Route path="/existing-bookings" element={<Bookings />} />
+        <Route path="/find-booking" element={<FindBooking />} />
       </Routes>
       <Footer />
     </div>
