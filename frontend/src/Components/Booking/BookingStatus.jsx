@@ -4,7 +4,7 @@ import Header from "../common/Header";
 
 const BookingSuccess = () => {
   const location = useLocation();
-  const message = location.state?.message;
+  const message = location.state?.message; //Retrieves the message property from the location state passed during navigation.
   const error = location.state?.error;
 
   return (
