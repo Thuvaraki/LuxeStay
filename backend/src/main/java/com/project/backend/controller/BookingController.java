@@ -64,7 +64,7 @@ import java.util.List;
         }
     }
 
-    @DeleteMapping("/cancelBooking/{roomId}")
+    @DeleteMapping("/cancelBooking/{bookingId}")
     public void cancelBooking(@PathVariable Long bookingId){
         bookingService.cancelBooking(bookingId);
     }
