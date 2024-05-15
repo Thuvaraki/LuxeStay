@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Header from "../common/Header";
 
 const Admin = () => {
   return (
     <section className="container" mt-5>
-      <h2>Welcome to Admin Panel</h2>
+      <Header title="Welcome to Admin Panel" />
       <hr />
       <Link to="/existing-rooms">Manage Rooms</Link>
       <p></p>
