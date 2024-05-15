@@ -6,6 +6,7 @@ import { saveBooking } from "../Utils/BookingApiFunctions";
 import { Form, FormControl } from "react-bootstrap";
 import { getRoomById } from "../Utils/ApiFunctions";
 import BookingSummary from "./BookingSummary";
+import { useAuth } from "../Auth/AuthProvider";
 
 const BookingForm = () => {
   const [isValidated, setIsValidated] = useState(false);
@@ -15,10 +16,11 @@ const BookingForm = () => {
 
   const { roomId } = useParams();
   const navigate = useNavigate();
+  const currentUser = localStorage.getItem("userId");
 
   const [booking, setBooking] = useState({
     guestFullName: "",
-    guestEmail: "",
+    guestEmail: currentUser,
     checkInDate: "",
     checkOutDate: "",
     numOfAdults: "",
