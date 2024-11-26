@@ -32,6 +32,7 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
+//Instead of writing useContext(AuthContext) every time, we can simply call useAuth().
 export const useAuth = () => {
   return useContext(AuthContext);
 };

@@ -58,6 +58,7 @@ const Profile = () => {
 
   const handleDeleteAccount = async () => {
     const confirmed = window.confirm(
+      //displays a  confirmation dialog box with a message and two buttons: "OK" and "Cancel"
       "Are you sure you want to delete your account? This action cannot be undone."
     );
     if (confirmed) {

@@ -17,14 +17,14 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class HotelUserDetails implements UserDetails {
+public class HotelUserDetails implements UserDetails { //implements the UserDetails interface
     private Long userId;
     private String email;
     private String password;
 
     private Collection<GrantedAuthority> authorities;
 
-    public static HotelUserDetails buildUserDetails(User user){
+    public static HotelUserDetails buildUserDetails(User user){ //static method
         List<GrantedAuthority> authorities = user.getRoles()
                 .stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName()))
@@ -37,6 +37,7 @@ public class HotelUserDetails implements UserDetails {
                 authorities);
     }
 
+    //Overrides of UserDetails Methods; These methods are used by Spring Security to determine user status
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;

@@ -18,8 +18,8 @@ const RoomSearch = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    const checkInMoment = moment(searchQuery.checkInDate);
-    const checkOutMoment = moment(searchQuery.checkOutDate);
+    const checkInMoment = moment(searchQuery.checkInDate); //moment() is a function from the Moment.js library that parses, manipulates, and formats dates in JavaScript.
+    const checkOutMoment = moment(searchQuery.checkOutDate); //creates a moment object representing the checkOutDate
     if (!checkInMoment.isValid() || !checkOutMoment.isValid()) {
       setErrorMessage("Please enter valid dates");
       return;

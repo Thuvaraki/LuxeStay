@@ -34,12 +34,18 @@ public class Role {
         this.getUsers().remove(user);
     }
 
+//    public void removeAllUsersFromRole() {
+//        if (this.getUsers() != null) {
+//            this.getUsers().clear(); //this method won't update the roles in each User.
+//    }
+
     public void removeAllUsersFromRole() {
         if (this.getUsers() != null) {
             List<User> roleUsers = this.getUsers().stream().toList();
-            roleUsers.forEach(this::removeUserFromRole);
+            roleUsers.forEach(this::removeUserFromRole);  ////this method will update the roles in each User.
         }
     }
+
 
     public String getName(){
         return name != null? name : "";

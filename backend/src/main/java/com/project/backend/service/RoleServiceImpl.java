@@ -29,10 +29,10 @@ public class RoleServiceImpl implements RoleService{
     @Override
     public Role createRole(Role theRole) {
         String roleName = "ROLE_"+theRole.getName().toUpperCase();
-
+        //Optional class is a container that may or may not contain a non-null value
+//         part of the java.util package , used to  avoiding NullPointerException.
         Optional<Role> existingRole = roleRepository.findByName(roleName);
-
-        if (existingRole.isPresent()) {
+        if (existingRole.isPresent()) {  //if the Optional is empty, trying to retrieve value will throw a NoSuchElementException. so that  we  use isPresent() to check whether values exist
             throw new RoleAlreadyExistException(theRole.getName()+" role already exists");
         }
 
@@ -46,6 +46,9 @@ public class RoleServiceImpl implements RoleService{
         roleRepository.deleteById(roleId);
     }
 
+//    In Java's Optional class, the get() method is used to retrieve the value stored within the Optional if it is present.
+//    However, if the Optional is empty, calling get() will throw a NoSuchElementException.
+//    so that before using get(), we can use isPresent() to check whether values exist
     @Override
     public Role findByName(String name) {
         return roleRepository.findByName(name).get();
@@ -56,7 +59,7 @@ public class RoleServiceImpl implements RoleService{
         Optional<User> user = userRepository.findById(userId);
         Optional<Role> role = roleRepository.findById(roleId);
         if(role.isPresent() && role.get().getUsers().contains(user.get())){
-            role.get().removeUserFromRole(user.get());
+            role.get().removeUserFromRole(user.get()); //invoking the removeUserFromRole method in Role object
             roleRepository.save(role.get());
             userRepository.save(user.get());
             return user.get();
@@ -70,7 +73,7 @@ public class RoleServiceImpl implements RoleService{
     public Role removeAllUsersFromRole(Long roleId) {
         Optional<Role> role = roleRepository.findById(roleId);
         if (role.isPresent()) {
-            role.get().removeAllUsersFromRole();
+            role.get().removeAllUsersFromRole(); //invoking the removeAllUsersFromRole method in Role object
             return roleRepository.save(role.get());
         } else {
             throw new RuntimeException("Role not found with id: " + roleId);
@@ -92,7 +95,7 @@ public class RoleServiceImpl implements RoleService{
         }
 
         if (role.isPresent()){
-            role.get().assignRoleToUser(user.get());
+            role.get().assignRoleToUser(user.get()); //invoking the removeAllUsersFromRole method in Role object
             roleRepository.save(role.get());
             userRepository.save(user.get());
 

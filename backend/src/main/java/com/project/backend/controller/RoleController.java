@@ -21,7 +21,7 @@ public class RoleController {
     private RoleService roleService;
 
     @GetMapping("/getRoles")
-    public ResponseEntity<List<Role>> getRoles() {
+    public ResponseEntity<List<Role>> getRoles() { //ResponseEntity provides flexibility to return both the data (body) and additional HTTP metadata like headers and status codes).
         List<Role> allRoles = roleService.getRoles();
         return ResponseEntity.ok(allRoles);
     }

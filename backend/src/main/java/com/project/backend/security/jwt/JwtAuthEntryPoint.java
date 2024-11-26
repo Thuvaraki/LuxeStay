@@ -21,7 +21,7 @@ public class JwtAuthEntryPoint  implements AuthenticationEntryPoint {
     public void commence(HttpServletRequest request, HttpServletResponse response,
                          AuthenticationException authException) throws IOException, ServletException {
 
-        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+        response.setContentType(MediaType.APPLICATION_JSON_VALUE); //It tells the client ( a browser or API consumer) that the response body will be in JSON format.
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 
         final Map<String, Object> body = new HashMap<>();
@@ -30,7 +30,7 @@ public class JwtAuthEntryPoint  implements AuthenticationEntryPoint {
         body.put("message", authException.getMessage());
         body.put("path", request.getServletPath());
 
-//  create a new instance of ObjectMapper.ObjectMapper is a class that allows to convert Java objects to JSON and vice versa.
+//  create a new instance of ObjectMapper.ObjectMapper is a class which is a utility from the Jackson library used to convert Java objects to JSON and vice versa.
 //  The final keyword indicates that the mapper reference cannot be reassigned to a different ObjectMapper instance.
         final ObjectMapper mapper = new ObjectMapper();
 //  writeValue method of ObjectMapper is used to serialize the body map (a Java object) into JSON format.

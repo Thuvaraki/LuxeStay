@@ -25,11 +25,10 @@ import java.util.List;
 @RequestMapping("/auth")
 @CrossOrigin(origins = "http://localhost:3000")
 public class AuthController {
-    @Autowired
+    @Autowired //Field injection , a type of dependency injection
     private UserService userService;
-
     @Autowired
-    private AuthenticationManager authenticationManager;
+    private AuthenticationManager authenticationManager; //interface that is part of Spring Security
 
     @Autowired
     private JwtUtils jwtUtils;
@@ -46,13 +45,13 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest request){
+    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest request){ //@valid - ensures that the request object complies with the validation rules defined in the LoginRequest class.
         Authentication authentication =
                 authenticationManager
                         .authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+        SecurityContextHolder.getContext().setAuthentication(authentication); //sets the authenticated Authentication object in the SecurityContext for the current thread.
         String jwt = jwtUtils.generateJwtTokenForUser(authentication);
-        HotelUserDetails userDetails = (HotelUserDetails) authentication.getPrincipal();
+        HotelUserDetails userDetails = (HotelUserDetails) authentication.getPrincipal(); //retrieves the authenticated principal: the user from the object
         List<String> roles = userDetails.getAuthorities()
                 .stream()
                 .map(GrantedAuthority::getAuthority).toList();

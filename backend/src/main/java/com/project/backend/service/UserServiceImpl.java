@@ -18,6 +18,9 @@ import java.util.List;
  public class UserServiceImpl implements UserService{
     @Autowired
     private UserRepository userRepository;
+
+    //instance of the PasswordEncoder interface provided by Spring Security
+//    It provides an abstraction for encoding passwords, ensuring they are stored securely in hashed format rather than plain text.
     @Autowired
     private  PasswordEncoder passwordEncoder;
 
@@ -31,7 +34,7 @@ import java.util.List;
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         Role userRole = roleRepository.findByName("ROLE_USER").get();
-        user.setRoles(Collections.singletonList(userRole));
+        user.setRoles(Collections.singletonList(userRole)); //Creates an immutable list containing only one element: userRole
         return userRepository.save(user);
     }
 

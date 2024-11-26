@@ -18,7 +18,7 @@ public class HotelUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
-        return HotelUserDetails.buildUserDetails(user);
+        return HotelUserDetails.buildUserDetails(user); //buildUserDetails is a static context, so calling it using className
     }
 }
 //loadUserByUsername(String email): This method is called by Spring Security to load user details based on the provided email address during login/authentication.

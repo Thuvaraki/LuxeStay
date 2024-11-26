@@ -39,6 +39,9 @@ public class RoomController {
     @Autowired
     private BookingService bookingService;
 
+//    multipart request is a way to send different types of data(files, text fields, meta data) in a single HTTP request.
+//    MultipartFile enables our server to handle file uploads as part of an HTTP request.
+//    In your example, it represents the "photo" being uploaded for a new room, along with additional metadata (room type and price).
     @PostMapping(value = "/add-new-room", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<RoomResponse> addNewRoom(
             @RequestParam("photo") MultipartFile photo,
@@ -126,6 +129,7 @@ public class RoomController {
     }
 
 
+    //@DateTimeFormat(iso = DateTimeFormat.ISO.DATE) annotation to ensure that the checkInDate,checkOutDate field is correctly parsed into a LocalDate object.(yyyy-MM-dd)
     @GetMapping("/availableRooms")
     public ResponseEntity<List<RoomResponse>> getAvailableRooms(
             @RequestParam("checkInDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkInDate,

@@ -70,7 +70,7 @@ import java.util.List;
     }
 
     private BookingResponse getBookingResponse(BookedRoom booking) {
-        Room theRoom = roomService.getRoomById(booking.getRoom().getId()).get();
+        Room theRoom = roomService.getRoomById(booking.getRoom().getId()).get(); //booking.getRoom().getId() -> retrieving id of the room from booking request object
         RoomResponse room = new RoomResponse(theRoom.getId(),
                 theRoom.getRoomType(),
                 theRoom.getRoomPrice());

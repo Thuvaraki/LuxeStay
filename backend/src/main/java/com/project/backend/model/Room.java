@@ -54,7 +54,7 @@ public class Room {
     private String generateRandomBookingCode(int length) {
         String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
-        StringBuilder codeBuilder = new StringBuilder();
+        StringBuilder codeBuilder = new StringBuilder(); // construct the booking code character by character
 
         Random random = new Random();
 
@@ -62,6 +62,8 @@ public class Room {
             char randomChar = characters.charAt(random.nextInt(characters.length()));
             codeBuilder.append(randomChar);
         }
+//nextInt(int bound) is a method from Java's Random class.
+//It generates a random integer in the range [0, bound), where: 0 is inclusive and bound is exclusive.
 
         return codeBuilder.toString();
     }

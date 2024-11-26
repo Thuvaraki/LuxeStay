@@ -75,8 +75,16 @@ export async function getAvailableRooms(checkInDate, checkOutDate, roomType) {
   );
 
   return result;
-  // Suppose checkInDate is "2024-05-16", checkOutDate is "2024-05-18", and roomType is "Single bed room".
-  // Without encoding, the resulting URL might look like => `/availableRooms?checkInDate=2024-05-16&checkOutDate=2024-05-18&roomType=Single bed room`
-  // After encoding, it becomes => `/availableRooms?checkInDate=2024-05-16&checkOutDate=2024-05-18&roomType=Single%20bed%20room`
-  // Here, spaces in roomType are converted to %20 to ensure the URL is correctly formed.
 }
+
+// The encodeURIComponent function is used to ensure that special characters in a string are properly encoded
+// so they can be safely included in a URL.
+// URLs have a specific format, and certain characters are reserved for special meanings in URLs (e.g., ?, &, =).
+// If these characters appear in your query parameters as part of the data, they might cause unintended behavior or
+// errors in parsing the URL.
+
+// Suppose checkInDate is "2024-05-16", checkOutDate is "2024-05-18", and roomType is "Single bed room".
+// Without encoding, the resulting URL might look like => `/availableRooms?checkInDate=2024-05-16&checkOutDate=2024-05-18&roomType=Single bed room`
+// After encoding, it becomes => `/availableRooms?checkInDate=2024-05-16&checkOutDate=2024-05-18&roomType=Single%20bed%20room`
+// Here, spaces in roomType are converted to %20 to ensure the URL is correctly formed.
+// space ( ) is not allowed in a URL and must be encoded as %20.

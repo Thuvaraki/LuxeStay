@@ -62,6 +62,7 @@ const BookingForm = () => {
     const totalCount = adultCount + childCount;
     return totalCount >= 1 && adultCount >= 1;
   };
+  // converting the dates to moment object, so that we r able to apply functions like diff, isSameOrAfter easily
 
   const isCheckOutDateValid = () => {
     // console.log("Check-In Date:", booking.checkInDate);

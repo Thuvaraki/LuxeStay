@@ -7,15 +7,16 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
-@Entity(name="Booked_Room")
-@Data
-@AllArgsConstructor
+@Entity(name="Booked_Room") //Marks a class as an entity, making it possible for Spring to map it to a database table.
+@Data //part of the Lombok library, helps reduce boilerplate code. Automatically generate methods like getters, setters, toString(), equals(), hashCode()
+@AllArgsConstructor //part of the Lombok library, automatically generate constructor
 @NoArgsConstructor
 public class BookedRoom {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id //Marks the field as the primary key of the entity.
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //Indicates that the value for the primary key will be automatically generated; strategy attribute specifies the generation strategy to be used.
+//    strategy tells the database to automatically generate a value for the primary key column using an auto-increment featur
     @Column(name="Booking_Id")
-    private Long bookingId;
+    private Long bookingId; //achieving encapsulation
 
     @Column(name="Check_In")
     private LocalDate checkInDate;
@@ -43,7 +44,7 @@ public class BookedRoom {
 
     @ManyToOne(fetch = FetchType.LAZY) //FetchType.LAZY, the associated Room entity will be loaded lazily, meaning it will only be retrieved from the database when it's accessed for the first time
     @JoinColumn(name="Room_Id")
-    private Room room;
+    private Room room; //creating an association between the current class and the Room entity
 
     public void calculateTotalNumberOfGuest(){
         this.totalNumOfGuest = this.NumOfAdults + this.NumOfChildren;

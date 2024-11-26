@@ -18,7 +18,7 @@ const Registration = () => {
   };
 
   const handleRegistration = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); //stops the default behavior of the form submission, which is to reload the page or navigate to a new URL as specified by the form's action attribute.
     try {
       const result = await registerUser(registration);
       setSuccessMessage(result);

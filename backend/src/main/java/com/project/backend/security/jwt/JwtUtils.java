@@ -16,6 +16,7 @@ import java.util.List;
 
 @Component
 public class JwtUtils {
+    //Logger is an interface from Simple Logging Facade for Java that defines methods for logging messages at various levels ( debug, info, warn, error).
     private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
 //    retrieves the JWT secret key and expiration time from the application's properties  using Spring's @Value annotation.
@@ -50,10 +51,10 @@ public class JwtUtils {
 
 //    extracts the username (subject) from a given JWT token.
     public String getUserNameFromToken(String token){
-        return Jwts.parserBuilder()
-                .setSigningKey(key())
-                .build()
-                .parseClaimsJws(token).getBody().getSubject();
+        return Jwts.parserBuilder()//starting point for parsing and verifying JWTs, builder allows to configure how the parsing should occur (e.g., setting the signing key)
+                .setSigningKey(key()) //Configures the secret key for token verification.
+                .build() //finalizes the setup and creates a JwtParser instance.
+                .parseClaimsJws(token).getBody().getSubject(); //Parses the JWT and verifies its signature.
     }
     public boolean validateToken(String token){
         try{

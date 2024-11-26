@@ -19,7 +19,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 
 public class AuthTokenFilter extends OncePerRequestFilter {
-
     @Autowired
     private JwtUtils jwtUtils;
 
@@ -38,13 +37,14 @@ public class AuthTokenFilter extends OncePerRequestFilter {
                 UserDetails userDetails = userDetailsService.loadUserByUsername(email);
                 var authentication =
                         new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                SecurityContextHolder.getContext().setAuthentication(authentication);
+                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));//Adds additional details to the authentication object, such as the client IP address and session information.
+                SecurityContextHolder.getContext().setAuthentication(authentication); //Stores the authentication object in the SecurityContext, which is Spring Security's mechanism for maintaining the authentication state of the user throughout the request.
+
             }
         }catch (Exception e){
             logger.error("Cannot set user authentication : {} ", e.getMessage());
         }
-        filterChain.doFilter(request, response);
+        filterChain.doFilter(request, response); //Passes the request and response to the next filter in the filter chain; Ensures that the request proceeds to the next stages of processing ( like reaching the controller).
     }
 
 //    method to extract the JWT token from the Authorization header of the HTTP request.

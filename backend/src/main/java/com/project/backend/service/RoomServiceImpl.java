@@ -32,8 +32,8 @@ public class RoomServiceImpl implements RoomService {
         room.setRoomPrice(roomPrice);
 
         if (!file.isEmpty()) {
-            byte[] photoBytes = file.getBytes();
-            Blob photoBlob = new SerialBlob(photoBytes);
+            byte[] photoBytes = file.getBytes(); //Blob requires binary data in the form of a byte array.
+            Blob photoBlob = new SerialBlob(photoBytes); //Creates a Blob object to represent the binary data in a way that can be stored in a database; SerialBlob is a standard Java implementation of the Blob interface.
             room.setPhoto(photoBlob);
         }
         return roomRepository.save(room);
